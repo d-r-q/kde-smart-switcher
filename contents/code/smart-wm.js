@@ -80,20 +80,18 @@ function toggleOneOf(cnds) {
 			cnds[0].minimized = true;
 		}
 	} else {
-		var toActivate = null;
-		if (workspace.activeClient.resourceClass != cnds[1].resourceClass) {
-			var toActivate = cnds[0];
+		var toActivate = cnds[0];
+		if (workspace.activeClient.resourceClass != cnds[0].resourceClass) {
 			for (var c in cnds) {
 				var cl = cnds[c];
-				if (cl.activated > toActivate.activated) {
+				if (cl != workspace.activeClient && cl.activated > toActivate.activated) {
 					toActivate = cl;
 				}
 			}
 		} else {
-			var toActivate = cnds[0];
 			for (var c in cnds) {
 				var cl = cnds[c];
-				if (cl.activated < toActivate.activated) {
+				if (cl != workspace.activeClient && cl.activated < toActivate.activated) {
 					toActivate = cl;
 				}
 			}
